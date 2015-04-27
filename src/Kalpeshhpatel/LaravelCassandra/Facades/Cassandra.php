@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Facade;
 class Cassandra extends Facade  {
 
     protected static function getFacadeAccessor() {
-        return 'Cassandra';
+        return 'Kalpeshhpatel\LaravelCassandra\Cassandra';
     }
 }
