@@ -16,12 +16,15 @@ use phpcassa\Schema\StrategyClass;
 
 class Cassandra {
 
+    /** @var  \phpcassa\Connection\ConnectionPool */
     private $connectionPool = null;
 
     private $keySpace = '';
 
+    /** @var \phpcassa\ColumnFamily */
     private $columnFamily = null;
 
+    /** @var \phpcassa\SystemManager */
     private $systemManager = null;
 
     /**
@@ -30,7 +33,7 @@ class Cassandra {
     public function __construct() {
         try {
             $this->connect();
-            $this->keySpace = \Config::get('laravel-cassandra::keyspace');
+            $this->keySpace = \Config::get('laravel-cassandra.keyspace');
         } catch (\Exception $e) {
             echo $e->getMessage();
         }
@@ -59,8 +62,8 @@ class Cassandra {
      */
     private function connect() {
         try {
-            $this->systemManager = new SystemManager(\Config::get('laravel-cassandra::cassandra_node_ip'));
-            $this->connectionPool = new ConnectionPool($this->keySpace, array(\Config::get('laravel-cassandra::cassandra_node_ip')));
+            $this->systemManager = new SystemManager(\Config::get('laravel-cassandra.cassandra_node_ip'));
+            $this->connectionPool = new ConnectionPool($this->keySpace, array(\Config::get('laravel-cassandra.cassandra_node_ip')));
             return;
         } catch (\Exception $e) {
             echo $e->getMessage();
