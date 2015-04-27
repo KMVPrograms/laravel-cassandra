@@ -32,8 +32,8 @@ class Cassandra {
      */
     public function __construct() {
         try {
-            $this->connect();
             $this->keySpace = \Config::get('laravel-cassandra.keyspace');
+            $this->connect();
         } catch (\Exception $e) {
             echo $e->getMessage();
         }
